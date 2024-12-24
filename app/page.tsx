@@ -20,7 +20,6 @@ import {
 } from "@/components/ui/dialog";
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
-import { div } from "framer-motion/client";
 
 const memberData = [
   {
@@ -123,9 +122,10 @@ export default function Home() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          to: "member@example.com",
-          subject: "VIP Membership Renewal",
-          text: `Your VIP membership has been renewed for ${selectedRenewal}.`,
+          to: 'shailesh.gehlot.sg@gmail.com',
+      subject: 'Hello from Next.js',
+      text: 'This is a plain text email.',
+      html: '<strong>This is an HTML email.</strong>',
         }),
       });
 

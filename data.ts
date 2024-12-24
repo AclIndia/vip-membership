@@ -1,69 +1,103 @@
-export const memberData =[
+export const members =[
     {
-        "gstIn": "AA1234567",
-        "name": "Alpha Industries",
-        "totalSaving": 2500,
-        "totalOrder": 1200
+      id: 1,
+      name: "John Johnson",
+      companyName: "Tech Solutions",
+      totalOrders: 15,
+      totalSaving: 2670,
+      membershipExpiry: "2025-12-22",
+      gstin: "GSTIN395479",
+      email: "shailesh.gehlot.sg@gmail.com"
     },
     {
-        "gstIn": "BB7654321",
-        "name": "Beta Corp",
-        "totalSaving": 1800,
-        "totalOrder": 900
+      id: 2,
+      name: "Jane Brown",
+      companyName: "ABC Corp",
+      totalOrders: 19,
+      totalSaving: 3306,
+      membershipExpiry: "2025-06-18",
+      gstin: "GSTIN313348",
+      email: "shaileshgehlot8990@gmail.com"
     },
     {
-        "gstIn": "CC9876543",
-        "name": "Gamma Solutions",
-        "totalSaving": 3000,
-        "totalOrder": 1500
+      id: 3,
+      name: "John Rodriguez",
+      companyName: "ABC Corp",
+      totalOrders: 37,
+      totalSaving: 6660,
+      membershipExpiry: "2025-10-18",
+      gstin: "GSTIN336769",
+      email: "shaileshgehlot1224@gmail.com"
     },
     {
-        "gstIn": "DD4567890",
-        "name": "Delta Traders",
-        "totalSaving": 4500,
-        "totalOrder": 2200
+      id: 4,
+      name: "Shweta Mehta",
+      companyName: "XYZ Ltd",
+      totalOrders: 5,
+      totalSaving: 810,
+      membershipExpiry: "2025-04-23",
+      gstin: "GSTIN683751",
+      email: "info@aclindia.co"
     },
-    {
-        "gstIn": "EE1122334",
-        "name": "Epsilon Pvt Ltd",
-        "totalSaving": 500,
-        "totalOrder": 300
-    },
-    {
-        "gstIn": "FF5544332",
-        "name": "Zeta Manufacturing",
-        "totalSaving": 1200,
-        "totalOrder": 700
-    },
-    {
-        "gstIn": "GG2233445",
-        "name": "Eta Enterprises",
-        "totalSaving": 3500,
-        "totalOrder": 2000
-    },
-    {
-        "gstIn": "HH6677889",
-        "name": "Theta Distributors",
-        "totalSaving": 1700,
-        "totalOrder": 950
-    },
-    {
-        "gstIn": "II9988776",
-        "name": "Iota Co.",
-        "totalSaving": 2900,
-        "totalOrder": 1800
-    },
-    {
-        "gstIn": "JJ4455667",
-        "name": "Kappa Ventures",
-        "totalSaving": 800,
-        "totalOrder": 400
-    }
-]
-
-
-
-
-
-
-
+    // {
+    //   id: 5,
+    //   name: "Jordan Clark",
+    //   companyName: "Global Inc",
+    //   totalOrders: 44,
+    //   totalSaving: 3696,
+    //   membershipExpiry: "2025-11-29",
+    //   gstin: "GSTIN594162",
+    //   email: "jordan.clark@yahoo.com"
+    // },
+    // {
+    //   id: 6,
+    //   name: "Jane Clark",
+    //   companyName: "ABC Corp",
+    //   totalOrders: 2,
+    //   totalSaving: 266,
+    //   membershipExpiry: "2025-09-02",
+    //   gstin: "GSTIN346540",
+    //   email: "jane.clark@yahoo.com"
+    // },
+    // {
+    //   id: 7,
+    //   name: "Taylor Doe",
+    //   companyName: "Innovative Labs",
+    //   totalOrders: 3,
+    //   totalSaving: 252,
+    //   membershipExpiry: "2025-12-22",
+    //   gstin: "GSTIN140284",
+    //   email: "taylor.doe@outlook.com"
+    // },
+    // {
+    //   id: 8,
+    //   name: "Jane Clark",
+    //   companyName: "XYZ Ltd",
+    //   totalOrders: 1,
+    //   totalSaving: 128,
+    //   membershipExpiry: "2025-10-11",
+    //   gstin: "GSTIN681182",
+    //   email: "jane.clark@outlook.com"
+    // },
+    // {
+    //   id: 9,
+    //   name: "Jamie Garcia",
+    //   companyName: "Visionary Enterprises",
+    //   totalOrders: 49,
+    //   totalSaving: 4557,
+    //   membershipExpiry: "2025-06-05",
+    //   gstin: "GSTIN230007",
+    //   email: "jamie.garcia@outlook.com"
+    // },
+    // {
+    //   id: 10,
+    //   name: "Jordan Garcia",
+    //   companyName: "ABC Corp",
+    //   totalOrders: 37,
+    //   totalSaving: 2960,
+    //   membershipExpiry: "2025-08-20",
+    //   gstin: "GSTIN414215",
+    //   email: "jordan.garcia@gmail.com"
+    // }
+  ]
+  
