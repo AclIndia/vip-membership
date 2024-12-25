@@ -10,7 +10,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
-import { Diamond, Star, Crown, Gift, Shield, Zap, ShoppingCart, TrendingUp } from "lucide-react";
+import { Diamond, Star, Crown, Gift, Shield, Zap, ShoppingCart, TrendingUp, Loader2, Newspaper, BadgeIndianRupee, IndianRupee, ShieldCheck, Blocks } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -21,6 +21,7 @@ import {
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 import { members } from "@/data";
+import { useRouter } from "next/navigation";
 
 const renewalOptions = [
   { period: "Monthly", price: 5000 },
@@ -29,19 +30,21 @@ const renewalOptions = [
 ];
 
 const benefits = [
-  { icon: Diamond, text: "ACL Price Protection Plan for all your eligible forward booking orders." },
-  { icon: Star, text: "Special Access to Discounted VIP Member's Price." },
-  { icon: Crown, text: "Priority Allocation of Stock before it is published to the Open Market." },
-  { icon: Gift, text: "Get Insider News/Reports & Polymer Trends to support timely Purchase." },
-  { icon: Shield, text: "Payment Flexibility For Imported Raw Material." },
+  { icon: ShieldCheck, text: "ACL Price Protection Plan for all your eligible forward booking orders." },
+  { icon: BadgeIndianRupee, text: "Special Access to Discounted VIP Member's Price." },
+  { icon: Blocks, text: "Priority Allocation of Stock before it is published to the Open Market." },
+  { icon: Newspaper, text: "Get Insider News/Reports & Polymer Trends to support timely Purchase." },
+  { icon: IndianRupee, text: "Payment Flexibility For Imported Raw Material." },
 ];
 
-function Content() {
+function ClientContent() {
   const searchParams = useSearchParams();
   const [member, setMember] = useState<any>(null);
   const [selectedRenewal, setSelectedRenewal] = useState<string>("Monthly")
   const [showConfetti, setShowConfetti] = useState(false)
   const [showPrices, setShowPrices] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const memberId = searchParams.get("member");
@@ -51,8 +54,17 @@ function Content() {
     }
   }, [searchParams]);
 
+  if (!member) {
+    return (
+      <div className="flex items-center justify-center h-screen text-white">
+        Member not found
+      </div>
+    );
+  }
+
   const handleRenew = async () => {
     try {
+      const selectedOption = renewalOptions.find(option => option.period === selectedRenewal);
       const response = await fetch("/api/send-email", {
         method: "POST",
         headers: {
@@ -60,13 +72,21 @@ function Content() {
         },
         body: JSON.stringify({
           to: 'shailesh.gehlot.sg@gmail.com',
-      subject: 'Hello from Next.js',
-      text: 'This is a plain text email.',
-      html: '<strong>This is an HTML email.</strong>',
+          subject: 'VIP Membership Renewal Confirmation',
+          text: `Membership Renewal for ${member.name}`,
+          html: `
+            <h1>VIP Membership Renewal Confirmation</h1>
+            <p><strong>Member Name:</strong> ${member.name}</p>
+            <p><strong>GSTIN:</strong> ${member.gstin}</p>
+            <p><strong>Selected Plan:</strong> ${selectedRenewal}</p>
+            <p><strong>Plan Price:</strong> ₹${selectedOption?.price.toLocaleString()}</p>
+            <p><strong>Total Orders:</strong> ${member.totalOrders}</p>
+            <p><strong>Total Savings:</strong> ₹${member.totalSaving.toLocaleString()}</p>
+          `,
         }),
       });
 
-      if (true) {
+      if (response.ok) {
         setShowConfetti(true);
         confetti({
           particleCount: 150,
@@ -83,13 +103,6 @@ function Content() {
     }
   };
 
-  if (!member) {
-    return (
-      <div className="flex items-center justify-center h-screen text-white">
-        Member not found
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-transparent text-white relative overflow-hidden">
@@ -221,9 +234,17 @@ function Content() {
                 </p>
                 <Button
                   onClick={handleRenew}
+                  disabled={isLoading}
                   className="w-full mt-4 bg-gradient-to-r from-golden via-yellow-500 to-golden text-black text-lg font-bold py-6 hover:from-golden hover:via-yellow-400 hover:to-golden"
                 >
-                  Confirm Renewal
+                  {isLoading ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Processing...
+                    </>
+                  ) : (
+                    "Confirm Renewal"
+                  )}
                 </Button>
               </DialogContent>
             </Dialog>
@@ -308,8 +329,6 @@ function Content() {
   );
 }
 
-
-
 export default function Home() {
   return (
     <Suspense fallback={
@@ -317,7 +336,8 @@ export default function Home() {
         Loading...
       </div>
     }>
-      <Content />
+      <ClientContent />
     </Suspense>
   );
 }
+
