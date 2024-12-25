@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 import { Inter } from 'next/font/google'
 import "../../app/globals.css"
 
