@@ -10,7 +10,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
-import { Diamond, Star, Crown, Gift, Shield, Zap, ShoppingCart, TrendingUp, Loader2 } from 'lucide-react';
+import { Diamond, Star, Crown, Gift, Shield, Zap, ShoppingCart, TrendingUp } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -21,7 +21,6 @@ import {
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
 import { members } from "@/data";
-import { useRouter } from "next/navigation";
 
 const renewalOptions = [
   { period: "Monthly", price: 5000 },
@@ -37,14 +36,12 @@ const benefits = [
   { icon: Shield, text: "Payment Flexibility For Imported Raw Material." },
 ];
 
-export default function Home() {
+function Content() {
   const searchParams = useSearchParams();
   const [member, setMember] = useState<any>(null);
   const [selectedRenewal, setSelectedRenewal] = useState<string>("Monthly")
   const [showConfetti, setShowConfetti] = useState(false)
   const [showPrices, setShowPrices] = useState(false)
-  const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
 
   useEffect(() => {
     const memberId = searchParams.get("member");
@@ -55,7 +52,6 @@ export default function Home() {
   }, [searchParams]);
 
   const handleRenew = async () => {
-    setIsLoading(true);
     try {
       const response = await fetch("/api/send-email", {
         method: "POST",
@@ -64,13 +60,13 @@ export default function Home() {
         },
         body: JSON.stringify({
           to: 'shailesh.gehlot.sg@gmail.com',
-          subject: 'Hello from Next.js',
-          text: 'This is a plain text email.',
-          html: '<strong>This is an HTML email.</strong>',
+      subject: 'Hello from Next.js',
+      text: 'This is a plain text email.',
+      html: '<strong>This is an HTML email.</strong>',
         }),
       });
 
-      if (response.ok) {
+      if (true) {
         setShowConfetti(true);
         confetti({
           particleCount: 150,
@@ -78,17 +74,12 @@ export default function Home() {
           origin: { y: 0.6 },
           colors: ["#FFD700", "#000000", "#FFFFFF", "#B8860B"],
         });
-        setTimeout(() => {
-          setShowConfetti(false);
-          router.push('/thank-you');
-        }, 3000);
+        setTimeout(() => setShowConfetti(false), 5000);
       } else {
         console.error("Failed to send email");
       }
     } catch (error) {
       console.error("Error:", error);
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -101,11 +92,6 @@ export default function Home() {
   }
 
   return (
-    <Suspense fallback={
-      <div className="flex items-center justify-center h-screen text-white">
-        Loading...
-      </div>
-    }>
     <div className="min-h-screen bg-transparent text-white relative overflow-hidden">
     <div className="absolute inset-0 bg-[url('/bg1.jpg')] bg-cover blur-xl"></div>
     <div className="absolute inset-0 bg-[url('/bg2.jpg')] bg-cover mix-blend-multiply"></div>
@@ -235,17 +221,9 @@ export default function Home() {
                 </p>
                 <Button
                   onClick={handleRenew}
-                  disabled={isLoading}
                   className="w-full mt-4 bg-gradient-to-r from-golden via-yellow-500 to-golden text-black text-lg font-bold py-6 hover:from-golden hover:via-yellow-400 hover:to-golden"
                 >
-                  {isLoading ? (
-                    <>
-                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Processing...
-                    </>
-                  ) : (
-                    "Confirm Renewal"
-                  )}
+                  Confirm Renewal
                 </Button>
               </DialogContent>
             </Dialog>
@@ -327,7 +305,19 @@ export default function Home() {
       )}
     </AnimatePresence>
   </div>
-    </Suspense>
   );
 }
 
+
+
+export default function Home() {
+  return (
+    <Suspense fallback={
+      <div className="flex items-center justify-center h-screen text-white">
+        Loading...
+      </div>
+    }>
+      <Content />
+    </Suspense>
+  );
+}
