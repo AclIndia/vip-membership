@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSearchParams } from "next/navigation";
 import confetti from "canvas-confetti";
@@ -101,6 +101,11 @@ export default function Home() {
   }
 
   return (
+    <Suspense fallback={
+      <div className="flex items-center justify-center h-screen text-white">
+        Loading...
+      </div>
+    }>
     <div className="min-h-screen bg-transparent text-white relative overflow-hidden">
     <div className="absolute inset-0 bg-[url('/bg1.jpg')] bg-cover blur-xl"></div>
     <div className="absolute inset-0 bg-[url('/bg2.jpg')] bg-cover mix-blend-multiply"></div>
@@ -322,6 +327,7 @@ export default function Home() {
       )}
     </AnimatePresence>
   </div>
+    </Suspense>
   );
 }
 
