@@ -10,7 +10,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
-import { Diamond, Star, Crown, Gift, Shield, Zap, ShoppingCart, TrendingUp } from "lucide-react";
+import { Diamond, Star, Crown, Gift, Shield, Zap, ShoppingCart, TrendingUp, Loader2 } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -20,69 +20,8 @@ import {
 } from "@/components/ui/dialog";
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
-
-const memberData = [
-  {
-    gstIn: "AA1234567",
-    name: "Alpha Industries",
-    totalSaving: 2500,
-    totalOrder: 1200,
-  },
-  {
-    gstIn: "BB7654321",
-    name: "Beta Corp",
-    totalSaving: 1800,
-    totalOrder: 900,
-  },
-  {
-    gstIn: "CC9876543",
-    name: "Gamma Solutions",
-    totalSaving: 3000,
-    totalOrder: 1500,
-  },
-  {
-    gstIn: "DD4567890",
-    name: "Delta Traders",
-    totalSaving: 4500,
-    totalOrder: 2200,
-  },
-  {
-    gstIn: "EE1122334",
-    name: "Epsilon Pvt Ltd",
-    totalSaving: 500,
-    totalOrder: 300,
-  },
-  {
-    gstIn: "FF5544332",
-    name: "Zeta Manufacturing",
-    totalSaving: 1200,
-    totalOrder: 700,
-  },
-  {
-    gstIn: "GG2233445",
-    name: "Eta Enterprises",
-    totalSaving: 3500,
-    totalOrder: 2000,
-  },
-  {
-    gstIn: "HH6677889",
-    name: "Theta Distributors",
-    totalSaving: 1700,
-    totalOrder: 950,
-  },
-  {
-    gstIn: "II9988776",
-    name: "Iota Co.",
-    totalSaving: 2900,
-    totalOrder: 1800,
-  },
-  {
-    gstIn: "JJ4455667",
-    name: "Kappa Ventures",
-    totalSaving: 800,
-    totalOrder: 400,
-  },
-];
+import { members } from "@/data";
+import { useRouter } from "next/navigation";
 
 const renewalOptions = [
   { period: "Monthly", price: 5000 },
@@ -91,12 +30,11 @@ const renewalOptions = [
 ];
 
 const benefits = [
-  { icon: Diamond, text: "Exclusive VIP Events" },
-  { icon: Star, text: "Priority Customer Support" },
-  { icon: Crown, text: "Personalized Concierge Service" },
-  { icon: Gift, text: "Luxury Gift on Your Birthday" },
-  { icon: Shield, text: "Extended Warranty on All Purchases" },
-  { icon: Zap, text: "Fast-Track Order Processing" },
+  { icon: Diamond, text: "ACL Price Protection Plan for all your eligible forward booking orders." },
+  { icon: Star, text: "Special Access to Discounted VIP Member's Price." },
+  { icon: Crown, text: "Priority Allocation of Stock before it is published to the Open Market." },
+  { icon: Gift, text: "Get Insider News/Reports & Polymer Trends to support timely Purchase." },
+  { icon: Shield, text: "Payment Flexibility For Imported Raw Material." },
 ];
 
 export default function Home() {
@@ -105,16 +43,19 @@ export default function Home() {
   const [selectedRenewal, setSelectedRenewal] = useState<string>("Monthly")
   const [showConfetti, setShowConfetti] = useState(false)
   const [showPrices, setShowPrices] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const memberId = searchParams.get("member");
     if (memberId) {
-      const foundMember = memberData.find((m) => m.gstIn === memberId);
+      const foundMember = members.find((m) => m.gstin === memberId);
       setMember(foundMember || null);
     }
   }, [searchParams]);
 
   const handleRenew = async () => {
+    setIsLoading(true);
     try {
       const response = await fetch("/api/send-email", {
         method: "POST",
@@ -123,13 +64,13 @@ export default function Home() {
         },
         body: JSON.stringify({
           to: 'shailesh.gehlot.sg@gmail.com',
-      subject: 'Hello from Next.js',
-      text: 'This is a plain text email.',
-      html: '<strong>This is an HTML email.</strong>',
+          subject: 'Hello from Next.js',
+          text: 'This is a plain text email.',
+          html: '<strong>This is an HTML email.</strong>',
         }),
       });
 
-      if (true) {
+      if (response.ok) {
         setShowConfetti(true);
         confetti({
           particleCount: 150,
@@ -137,12 +78,17 @@ export default function Home() {
           origin: { y: 0.6 },
           colors: ["#FFD700", "#000000", "#FFFFFF", "#B8860B"],
         });
-        setTimeout(() => setShowConfetti(false), 5000);
+        setTimeout(() => {
+          setShowConfetti(false);
+          router.push('/thank-you');
+        }, 3000);
       } else {
         console.error("Failed to send email");
       }
     } catch (error) {
       console.error("Error:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -224,7 +170,7 @@ export default function Home() {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.6 }}
                 >
-                  ₹{member.totalOrder.toLocaleString()}
+                  {member.totalOrders}
                 </motion.div>
               </motion.div>
             </div>
@@ -284,9 +230,17 @@ export default function Home() {
                 </p>
                 <Button
                   onClick={handleRenew}
+                  disabled={isLoading}
                   className="w-full mt-4 bg-gradient-to-r from-golden via-yellow-500 to-golden text-black text-lg font-bold py-6 hover:from-golden hover:via-yellow-400 hover:to-golden"
                 >
-                  Confirm Renewal
+                  {isLoading ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Processing...
+                    </>
+                  ) : (
+                    "Confirm Renewal"
+                  )}
                 </Button>
               </DialogContent>
             </Dialog>
@@ -370,3 +324,4 @@ export default function Home() {
   </div>
   );
 }
+

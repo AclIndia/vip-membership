@@ -1,175 +1,301 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Important Update for Members</title>
+    <title>Email Template</title>
     <style>
-      /* Global styles */
       body {
-        background-color: #000000;
-        color: #ffffff;
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;
         font-family: Arial, sans-serif;
-        line-height: 1.6;
-        padding: 20px;
       }
-
-      /* Mobile styles */
-      @media (max-width: 768px) {
+      table {
+        border-spacing: 0;
+        border-collapse: collapse;
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+      }
+      .vip_card {
+        margin: 20px auto; /* Center the card */
+        display: block;
+        width: 40%;
+        height: auto;
+      }
+      .benefits-item {
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        color: #ffd700;
+        font-size: 14px; /* Default font size */
+      }
+      .benefits-item img {
+        width: 24px;
+        height: 24px;
+        margin-right: 10px;
+      }
+      /* Responsive Design */
+      @media screen and (max-width: 600px) {
+        table[class="content-table"] {
+          width: 100% !important;
+        }
+        td[class="content-padding"] {
+          padding: 15px !important;
+        }
+        td[class="benefits-item"] {
+          font-size: 12px !important; /* Smaller font for mobile */
+        }
+        h2 {
+          font-size: 18px !important;
+        }
         p {
-          font-size: 20px !important;
+          font-size: 14px !important;
         }
-      }
-
-      @media (max-width: 480px) {
-        p {
-          font-size: 16px !important;
-        }
-      }
-
-      /* Grid styles for larger screens */
-      @media (min-width: 768px) {
-        .grid {
-          grid-template-columns: 1fr 1fr;
-        }
-        .benefits-container {
-          grid-template-columns: 1fr 1fr;
+        .benefits-item {
+          font-size: 12px; /* Adjust font size for smaller screens */
         }
       }
     </style>
   </head>
-  <body>
-    <div style="text-align: center; padding: 20px">
-      <img
-        src="https://res.cloudinary.com/dehwqau58/image/upload/v1734945334/logo_edkwnz.png"
-        alt="Logo"
-        style="max-width: 100%; height: auto"
-      />
-    </div>
-    <div style="background-color: #ffd700; text-align: center; padding: 10px">
-      <p style="font-size: 25px; color: #000000; font-weight: bold; margin: 0">
-        <img
-          src="https://res.cloudinary.com/dehwqau58/image/upload/v1734947505/crown_o6ezcq.png"
-          alt="Star Icon"
-          style="width: 24px; height: 24px; vertical-align: middle; margin-right: 5px;"
-        />
-        VIP PRIORITY MEMBERSHIP
-      </p>
-    </div>
-    <p style="text-align: center; font-size: 18px; color: #be2200">
-      World of Exclusive Benefits for Polymer Buyers
-    </p>
-    <div style="text-align: center; padding: 20px; background: #111111;">
-      <img
-        src="https://res.cloudinary.com/dehwqau58/image/upload/v1734946684/All_Pages-2_lwtmlx.png"
-        alt="Logo"
-        style="max-width: 100%; height: auto"
-      />
-    </div>
-    <div style="max-width: 600px; margin: 0 auto; background-color: #111111; padding: 20px;">
-      <h1 style="color: #ffd700">Hello {{name}},</h1>
-      <p>We hope this email finds you well. We have an important update for you regarding your membership.</p>
-      <h2 style="color: #ffd700">Your Membership Details:</h2>
-      <ul style="list-style-type: none; padding-left: 0">
-        <li><strong style="color: #ffd700">Company:</strong><p style="padding: 0">{{companyName}}</p></li>
-        <li><strong style="color: #ffd700">GST:</strong><p>{{gstin}}</p></li>
-      </ul>
-      <div style="font-size: medium; text-align: center">
-        <p>Your ACL VIP Membership Saved you as of 30th December,2024</p>
-      </div>
-      <div style="margin-top: 24px; display: grid; grid-template-columns: 1fr; gap: 24px;">
-        <div style="padding: 16px; border-radius: 8px; border: 1px solid #ffd700;">
-          <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="8" cy="21" r="1" />
-              <circle cx="19" cy="21" r="1" />
-              <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
-            </svg>
-            <span style="font-size: 0.875rem; color: rgba(255, 215, 0, 0.8)">Total Saving</span>
-          </div>
-          <div style="font-size: 2.25rem; font-weight: bold; color: #ffd700;">₹{{totalSaving}}</div>
-        </div>
-        <div style="padding: 16px; border-radius: 8px; border: 1px solid #ffd700;">
-          <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
-              <polyline points="16 7 22 7 22 13" />
-            </svg>
-            <span style="font-size: 0.875rem; color: rgba(255, 215, 0, 0.8)">Total Order</span>
-          </div>
-          <div style="font-size: 2.25rem; font-weight: bold; color: #ffd700;">{{totalOrders}}</div>
-        </div>
-      </div>
-      <p style="color: #be2200; text-align: center; font-size: larger">
-        Your Membership Expires on {{membershipExpiry}}
-      </p>
-      <p style="text-align: center">To Continue Enjoying Membership benefits.............</p>
-      <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">
-        <a href="https://localhost:3000/?member={{gstin}}" style="display: inline-block; padding: 10px 20px; font-size: large; font-weight: 600; border-radius: 12px; background: #ffd700; color: #000; text-align: center; text-decoration: none; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-          Renew Now
-        </a>
-      </div>
-      <div
-      style="
-        border: 1px solid #ffd700;
-        border-radius: 0.5rem;
-        padding: 24px;
-      "
+  <body style="margin: 0; padding: 0; background-color: #f5f5f5">
+    <!-- Wrapper Table -->
+    <table
+      align="center"
+      border="0"
+      cellpadding="0"
+      cellspacing="0"
+      width="100%"
+      style="background-color: #f5f5f5; padding: 20px"
     >
-      <h3 style="font-size: 1.5rem; line-height: 2rem; font-weight: 600; color: #ffd700; margin-bottom: 1rem;">Exclusive VIP Benefits</h3>
-      <div style="display: grid; grid-template-columns: 1fr; gap: 16px; padding: 16px;">
-        <!-- First Benefit -->
-        <div style="display: flex; align-items: center; color: #ffd700; font-size: 14px; line-height: 20px; gap: 8px;">
-            <img
-            src="https://res.cloudinary.com/dehwqau58/image/upload/v1734953495/shield-check_cnjxsl.png"
-            alt="Star Icon"
-            style="width: 24px; height: 24px; vertical-align: middle; margin-right: 5px;"
-          />
-          <span>ACL Price Protection Plan for all your eligible forward booking orders.</span>
-        </div>
-      
-        <!-- Second Benefit -->
-        <div style="display: flex; align-items: center; color: #ffd700; font-size: 14px; line-height: 20px; gap: 8px;">
-            <img
-            src="https://res.cloudinary.com/dehwqau58/image/upload/v1734953495/badge-indian-rupee_z13ypu.png"
-            alt="Star Icon"
-            style="width: 24px; height: 24px; vertical-align: middle; margin-right: 5px;"
-          />
-          <span>Special Access to Discounted VIP Member's Price</span>
-        </div>
-      
-        <!-- Third Benefit -->
-        <div style="display: flex; align-items: center; color: #ffd700; font-size: 14px; line-height: 20px; gap: 8px;">
-            <img
-            src="https://res.cloudinary.com/dehwqau58/image/upload/v1734953495/blocks_szmnxj.png"
-            alt="Star Icon"
-            style="width: 24px; height: 24px; vertical-align: middle; margin-right: 5px;"
-          />
-          <span>Priority Allocation of Stock before it is published to the Open Market.</span>
-        </div>
-      
-        <!-- Fourth Benefit -->
-        <div style="display: flex; align-items: center; color: #ffd700; font-size: 14px; line-height: 20px; gap: 8px;">
-            <img
-            src="https://res.cloudinary.com/dehwqau58/image/upload/v1734953495/newspaper_ywejcp.png"
-            alt="Star Icon"
-            style="width: 24px; height: 24px; vertical-align: middle; margin-right: 5px;"
-          />
-          <span>Get Insider News/Reports & Polymer Trends to support timely Purchase.</span>
-        </div>
-      
-        <!-- Fifth Benefit -->
-        <div style="display: flex; align-items: center; color: #ffd700; font-size: 14px; line-height: 20px; gap: 8px;">
-            <img
-            src="https://res.cloudinary.com/dehwqau58/image/upload/v1734953495/indian-rupee_tkvruc.png"
-            alt="Star Icon"
-            style="width: 24px; height: 24px; vertical-align: middle; margin-right: 5px;"
-          />
-          <span>Payment Flexibility For Imported Raw Material.</span>
-        </div>
-      </div>
-      
-    </div>
-    </div>
+      <tr>
+        <td align="center">
+          <!-- Content Table -->
+          <table
+            class="content-table"
+            border="0"
+            cellpadding="0"
+            cellspacing="0"
+            width="600"
+            style="
+              background-color: #000;
+              color: #fff;
+              border-radius: 10px;
+              overflow: hidden;
+              font-family: Arial, sans-serif;
+            "
+          >
+            <!-- Header Section -->
+            <tr>
+              <td
+                align="center"
+                style="
+                  background-color: #ffc107;
+                  padding: 20px;
+                  font-size: 24px;
+                  font-weight: bold;
+                  color: #000;
+                "
+              >
+                <span
+                  style="color: #000;">
+                  <a href="https://www.aclindia.co"><img
+                    src="https://res.cloudinary.com/dehwqau58/image/upload/v1734945334/logo_edkwnz.png"
+                    alt="Logo"
+                    style="max-width: 100px; height: auto"
+                  /></a>
+                  VIP PRIORITY MEMBERSHIP</span
+                >
+              </td>
+            </tr>
+            <!-- Body Section -->
+            <tr>
+              <td
+                class="content-padding"
+                style="padding: 20px; text-align: center"
+              >
+                <h2 style="margin: 0; font-size: 22px; color: #be2200">
+                  World of Exclusive Benefits for Polymer Buyers
+                </h2>
+                <img
+                  src="https://res.cloudinary.com/dehwqau58/image/upload/v1734946684/All_Pages-2_lwtmlx.png"
+                  alt="VIP Card"
+                  class="vip_card"
+                />
+                <p style="margin: 0; font-size: 16px; color: #fff">
+                  Hello <strong>{{name}}</strong>,
+                </p>
+                <p style="margin: 10px 0; font-size: 16px; color: #fff">
+                  We hope this email finds you well. Here’s an update regarding
+                  your membership.
+                </p>
+                <p style="margin: 10px 0; font-size: 16px; color: #ffc107">
+                  Your Membership Details:
+                </p>
+                <table
+                  align="center"
+                  border="0"
+                  cellpadding="5"
+                  cellspacing="0"
+                  style="width: 80%; margin: 0 auto; color: #fff"
+                >
+                  <tr>
+                    <td style="text-align: left;color: #ffc107;">Company:</td>
+                    <td style="text-align: right">{{companyName}}</td>
+                  </tr>
+                  <tr>
+                    <td style="text-align: left; color: #ffc107;">GST:</td>
+                    <td style="text-align: right">{{gstin}}</td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" style="padding: 10px 0; text-align: center">
+                      Your ACL VIP Membership Saved You as of 30th December,
+                      2024
+                    </td>
+                  </tr>
+                </table>
+                <table
+                align="center"
+                border="0"
+                cellpadding="10"
+                cellspacing="0"
+                style="
+                  width: 80%;
+                  margin: 20px auto;
+                  border: 1px #ffc107 solid;
+                  border-radius: 10px; /* Rounded border */
+                  border-collapse: separate; /* Ensures rounded border works */
+                  color: #ffc107;
+                "
+              >
+                <tr>
+                  <td align="center" style="font-size: 18px">Total Saving</td>
+                  <td align="center" style="font-size: 18px">Total Orders</td>
+                </tr>
+                <tr>
+                  <td align="center" style="font-size: 22px; font-weight: bold">
+                    ₹{{totalSaving}}
+                  </td>
+                  <td align="center" style="font-size: 22px; font-weight: bold">
+                    {{totalOrders}}
+                  </td>
+                </tr>
+              </table>
+              
+                <p style="margin: 10px 0; font-size: 18px; color: #be2200">
+                  Your Membership Expires on
+                  <strong>{{membershipExpiry}}</strong>
+                </p>
+                <p style="text-align: center; margin-bottom: 20px">
+                  To Continue Enjoying Membership Benefits...
+                </p>
+                <div style="text-align: center">
+                  <a
+                    href="https://localhost:3000/?member={{gstin}}"
+                    style="
+                      display: inline-block;
+                      padding: 10px 20px;
+                      font-size: large;
+                      font-weight: bold;
+                      border-radius: 12px;
+                      background-color: #ffd700;
+                      color: #000;
+                      text-decoration: none;
+                    "
+                    >Renew Now</a
+                  >
+                </div>
+                <!-- Membership Benefits -->
+                <div
+                  style="
+                    background-color: #111111;
+                    padding: 20px;
+                    border: 1px solid #ffd700;
+                    border-radius: 8px;
+                    margin: 20px 0;
+                  "
+                >
+                  <h3
+                    style="color: #ffd700; margin-bottom: 20px; font-size: 20px"
+                  >
+                    Exclusive VIP Benefits
+                  </h3>
+                  <ul
+                    style="
+                      list-style: none;
+                      padding: 0;
+                      margin: 0;
+                      text-align: left;
+                    "
+                  >
+                    <li class="benefits-item">
+                      <img
+                        src="https://res.cloudinary.com/dehwqau58/image/upload/v1734953495/shield-check_cnjxsl.png"
+                        alt="Icon"
+                      />
+                      ACL Price Protection Plan for all your eligible forward
+                      booking orders.
+                    </li>
+                    <li class="benefits-item">
+                      <img
+                        src="https://res.cloudinary.com/dehwqau58/image/upload/v1734953495/badge-indian-rupee_z13ypu.png"
+                        alt="Icon"
+                      />
+                      Special Access to Discounted VIP Member's Price.
+                    </li>
+                    <li class="benefits-item">
+                      <img
+                        src="https://res.cloudinary.com/dehwqau58/image/upload/v1734953495/blocks_szmnxj.png"
+                        alt="Icon"
+                      />
+                      Priority Allocation of Stock before it is published to the
+                      Open Market.
+                    </li>
+                    <li class="benefits-item">
+                      <img
+                        src="https://res.cloudinary.com/dehwqau58/image/upload/v1734953495/newspaper_ywejcp.png"
+                        alt="Icon"
+                      />
+                      Get Insider News/Reports & Polymer Trends to support
+                      timely Purchase.
+                    </li>
+                    <li class="benefits-item">
+                      <img
+                        src="https://res.cloudinary.com/dehwqau58/image/upload/v1734953495/indian-rupee_tkvruc.png"
+                        alt="Icon"
+                      />
+                      Payment Flexibility For Imported Raw Material.
+                    </li>
+                  </ul>
+                </div>
+                <p style="margin: 20px 0; font-size: 16px; color: #fff">
+                  To continue enjoying membership benefits, renew your
+                  membership today!
+                </p>
+              </td>
+            </tr>
+            <!-- Footer Section -->
+            <tr>
+              <td
+                align="center"
+                style="
+                  background-color: #ffc107;
+                  padding: 20px;
+                  font-size: 14px;
+                  color: #000;
+                "
+              >
+                <p style="margin: 0">
+                  © 2024 Ambica Corporation Limited. All Rights Reserved.
+                </p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
   </body>
 </html>

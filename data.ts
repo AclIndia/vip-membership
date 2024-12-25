@@ -9,46 +9,46 @@ export const members =[
       gstin: "GSTIN395479",
       email: "shailesh.gehlot.sg@gmail.com"
     },
-    {
-      id: 2,
-      name: "Jane Brown",
-      companyName: "ABC Corp",
-      totalOrders: 19,
-      totalSaving: 3306,
-      membershipExpiry: "2025-06-18",
-      gstin: "GSTIN313348",
-      email: "shaileshgehlot8990@gmail.com"
-    },
-    {
-      id: 3,
-      name: "John Rodriguez",
-      companyName: "ABC Corp",
-      totalOrders: 37,
-      totalSaving: 6660,
-      membershipExpiry: "2025-10-18",
-      gstin: "GSTIN336769",
-      email: "shaileshgehlot1224@gmail.com"
-    },
-    {
-      id: 4,
-      name: "Shweta Mehta",
-      companyName: "XYZ Ltd",
-      totalOrders: 5,
-      totalSaving: 810,
-      membershipExpiry: "2025-04-23",
-      gstin: "GSTIN683751",
-      email: "info@aclindia.co"
-    },
     // {
-    //   id: 5,
-    //   name: "Jordan Clark",
-    //   companyName: "Global Inc",
-    //   totalOrders: 44,
-    //   totalSaving: 3696,
-    //   membershipExpiry: "2025-11-29",
-    //   gstin: "GSTIN594162",
-    //   email: "jordan.clark@yahoo.com"
+    //   id: 2,
+    //   name: "Jane Brown",
+    //   companyName: "ABC Corp",
+    //   totalOrders: 19,
+    //   totalSaving: 3306,
+    //   membershipExpiry: "2025-06-18",
+    //   gstin: "GSTIN313348",
+    //   email: "shaileshgehlot8990@gmail.com"
     // },
+    // {
+    //   id: 3,
+    //   name: "John Rodriguez",
+    //   companyName: "ABC Corp",
+    //   totalOrders: 37,
+    //   totalSaving: 6660,
+    //   membershipExpiry: "2025-10-18",
+    //   gstin: "GSTIN336769",
+    //   email: "shaileshgehlot1224@gmail.com"
+    // },
+    // {
+    //   id: 4,
+    //   name: "Shweta Mehta",
+    //   companyName: "XYZ Ltd",
+    //   totalOrders: 5,
+    //   totalSaving: 810,
+    //   membershipExpiry: "2025-04-23",
+    //   gstin: "GSTIN683751",
+    //   email: "info@aclindia.co"
+    // },
+    {
+      id: 5,
+      name: "Jordan Clark",
+      companyName: "Global Inc",
+      totalOrders: 44,
+      totalSaving: 3696,
+      membershipExpiry: "2025-11-29",
+      gstin: "GSTIN594162",
+      email: "tibaga1454@evusd.com"
+    },
     // {
     //   id: 6,
     //   name: "Jane Clark",

@@ -7,31 +7,26 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY as string)
 
 export async function POST() {
   try {
-
     const messages = members.map((member: any) => ({
       to: member.email,
-      from: 'office9@aclindia.co', // Replace with your verified SendGrid sender
-      templateId: 'd-cd5c8778e0064cbd9c415c058df61351', // Replace with your SendGrid dynamic template ID
+      from: {
+        email: 'office9@aclindia.co',
+        name: 'Ambica Corporation Limited'  // This is the custom name that will appear
+      },
+      subject: `Important Update for ${member.name}`,
+      templateId: 'd-cd5c8778e0064cbd9c415c058df61351',
       dynamicTemplateData: {
         name: member.name,
-        gstin : member.gstin,
+        gstin: member.gstin,
         companyName: member.companyName,
         totalOrders: member.totalOrders,
         totalSaving: member.totalSaving.toFixed(2),
-        membershipExpiry: member.membershipExpiry
+        membershipExpiry: member.membershipExpiry,
+        subject: `Important Update for ${member.name}`
       }
     }))
 
     await sgMail.send(messages)
-
-    // // Log the sent email to the database
-    // await prisma.sentMail.create({
-    //   data: {
-    //     subject: 'Important Update for Members',
-    //     sentAt: new Date(),
-    //     recipients: members.length
-    //   }
-    // })
 
     return NextResponse.json({ success: true })
   } catch (error) {
