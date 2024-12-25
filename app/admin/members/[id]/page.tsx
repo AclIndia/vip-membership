@@ -1,8 +1,11 @@
 import { members } from '@/data'
 import { notFound } from 'next/navigation'
 
-export default function MemberDetails({ params }: { params: { id: string } }) {
-  const member = members.find(m => m.id === parseInt(params.id))
+export default async function MemberDetails({ params }: { params: Promise<{ id: string }> }) {
+
+  const id = (await params).id;
+
+  const member = members.find(m => m.id === parseInt(id))
 
   if (!member) {
     notFound()
