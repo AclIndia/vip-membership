@@ -29,26 +29,26 @@ export const members =[
     //   gstin: "GSTIN336769",
     //   email: "shaileshgehlot1224@gmail.com"
     // },
-    // {
-    //   id: 4,
-    //   name: "Shweta Mehta",
-    //   companyName: "XYZ Ltd",
-    //   totalOrders: 5,
-    //   totalSaving: 810,
-    //   membershipExpiry: "2025-04-23",
-    //   gstin: "GSTIN683751",
-    //   email: "info@aclindia.co"
-    // },
     {
-      id: 5,
-      name: "Jordan Clark",
-      companyName: "Global Inc",
-      totalOrders: 44,
-      totalSaving: 3696,
-      membershipExpiry: "2025-11-29",
-      gstin: "GSTIN594162",
-      email: "office9@aclindia.co"
+      id: 4,
+      name: "Shweta Mehta",
+      companyName: "XYZ Ltd",
+      totalOrders: 5,
+      totalSaving: 810,
+      membershipExpiry: "2025-04-23",
+      gstin: "GSTIN683751",
+      email: "info@aclindia.co"
     },
+    // {
+    //   id: 5,
+    //   name: "Jordan Clark",
+    //   companyName: "Global Inc",
+    //   totalOrders: 44,
+    //   totalSaving: 3696,
+    //   membershipExpiry: "2025-11-29",
+    //   gstin: "GSTIN594162",
+    //   email: "office9@aclindia.co"
+    // },
     // {
     //   id: 6,
     //   name: "Jane Clark",
