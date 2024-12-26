@@ -47,7 +47,7 @@ export const members =[
       totalSaving: 3696,
       membershipExpiry: "2025-11-29",
       gstin: "GSTIN594162",
-      email: "tibaga1454@evusd.com"
+      email: "office9@aclindia.co"
     },
     // {
     //   id: 6,

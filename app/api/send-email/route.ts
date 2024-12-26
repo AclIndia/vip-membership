@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { NextRequest, NextResponse } from 'next/server';
 import sgMail from '@sendgrid/mail';
 
@@ -5,17 +6,27 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY!);
 
 export async function POST(req: NextRequest) {
   try {
-    const { to, subject, text, html } = await req.json();
+    const { email,to, subject, text, html } = await req.json();
 
     const msg = {
-      to, // Recipient email
+      to : "office9@aclindia.co", // Recipient email
       from: 'office9@aclindia.co', // Verified sender email
       subject,
       text,
       html, // Optional: HTML content
     };
 
+    const msg1 = {
+      to: email,
+      from: {
+        email: 'office9@aclindia.co',
+        name: 'Ambica Corporation Limited'  // This is the custom name that will appear
+      },
+      templateId: 'd-58d4754ac066420d89425468d6e333c2',
+    };
+
     await sgMail.send(msg);
+    await sgMail.send(msg1);
 
     console.log("Email sent successfully!",await sgMail.send(msg));
     

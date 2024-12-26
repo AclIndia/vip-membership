@@ -63,6 +63,7 @@ function ClientContent() {
   }
 
   const handleRenew = async () => {
+    setIsLoading(true);
     try {
       const selectedOption = renewalOptions.find(option => option.period === selectedRenewal);
       const response = await fetch("/api/send-email", {
@@ -71,6 +72,7 @@ function ClientContent() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          email : member.email,
           to: 'shailesh.gehlot.sg@gmail.com',
           subject: 'VIP Membership Renewal Confirmation',
           text: `Membership Renewal for ${member.name}`,
@@ -86,7 +88,7 @@ function ClientContent() {
         }),
       });
 
-      if (response.ok) {
+      if (response.ok) {  
         setShowConfetti(true);
         confetti({
           particleCount: 150,
@@ -94,12 +96,17 @@ function ClientContent() {
           origin: { y: 0.6 },
           colors: ["#FFD700", "#000000", "#FFFFFF", "#B8860B"],
         });
-        setTimeout(() => setShowConfetti(false), 5000);
+        setTimeout(() => {
+          setShowConfetti(false);
+          router.push('/thank-you');
+        }, 5000);
       } else {
         console.error("Failed to send email");
       }
     } catch (error) {
       console.error("Error:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -131,7 +138,7 @@ function ClientContent() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <p className="text-lg font-medium text-golden">Membership GSTIN:</p>
-            <p className="text-xl font-bold">{member.gstIn}</p>
+            <p className="text-xl font-bold">{member.gstin}</p>
           </div>
           <div>
             <p className="text-lg font-medium text-golden">Membership Status:</p>
