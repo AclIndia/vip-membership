@@ -5,7 +5,7 @@ export const members =[
       companyName: "Tech Solutions",
       totalOrders: 15,
       totalSaving: 2670,
-      membershipExpiry: "2025-12-22",
+      membershipExpiry: "31st March 2025",
       gstin: "GSTIN395479",
       email: "shailesh.gehlot.sg@gmail.com"
     },
@@ -35,7 +35,7 @@ export const members =[
       companyName: "XYZ Ltd",
       totalOrders: 5,
       totalSaving: 810,
-      membershipExpiry: "2025-04-23",
+      membershipExpiry: "31st March 2025",
       gstin: "GSTIN683751",
       email: "info@aclindia.co"
     },

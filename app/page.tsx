@@ -209,7 +209,7 @@ function ClientContent() {
               </motion.div>
             </motion.div>
           </div>
-          <div>
+          <div className="text-center text-xl text-[#be2200] font-bold">
             <p>Your Membership Expires on 31st March 2025</p>
           </div>
 
