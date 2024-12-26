@@ -21,6 +21,7 @@ export default function RootLayout({
           <ul className="flex space-x-4">
             <li><a href="/admin/members" className="hover:text-gray-300">Members</a></li>
             <li><a href="/admin/mails" className="hover:text-gray-300">Sent Mails</a></li>
+            <li><a href="/admin/renewal-data" className="hover:text-gray-300">Renewal Data</a></li>
           </ul>
         </nav>
         {children}
