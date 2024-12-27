@@ -29,16 +29,16 @@ export const members =[
     //   gstin: "GSTIN336769",
     //   email: "shaileshgehlot1224@gmail.com"
     // },
-    // {
-    //   id: 4,
-    //   name: "Shweta Mehta",
-    //   companyName: "XYZ Ltd",
-    //   totalOrders: 5,
-    //   totalSaving: 810,
-    //   membershipExpiry: "31st March 2025",
-    //   gstin: "GSTIN683751",
-    //   email: "info@aclindia.co"
-    // },
+    {
+      id: 4,
+      name: "Shweta Mehta",
+      companyName: "XYZ Ltd",
+      totalOrders: 5,
+      totalSaving: 810,
+      membershipExpiry: "31st March 2025",
+      gstin: "GSTIN683751",
+      email: "info@aclindia.co"
+    },
     // {
     //   id: 5,
     //   name: "Sumit",
