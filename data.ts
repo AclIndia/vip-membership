@@ -9,16 +9,16 @@ export const members =[
       gstin: "GSTIN395479",
       email: "shailesh.gehlot.sg@gmail.com"
     },
-    // {
-    //   id: 2,
-    //   name: "Jane Brown",
-    //   companyName: "ABC Corp",
-    //   totalOrders: 19,
-    //   totalSaving: 3306,
-    //   membershipExpiry: "2025-06-18",
-    //   gstin: "GSTIN313348",
-    //   email: "shaileshgehlot8990@gmail.com"
-    // },
+    {
+      id: 2,
+      name: "Jane Brown",
+      companyName: "ABC Corp",
+      totalOrders: 19,
+      totalSaving: 3306,
+      membershipExpiry: "2025-06-18",
+      gstin: "GSTIN313348",
+      email: "office9@aclindia.co"
+    },
     // {
     //   id: 3,
     //   name: "John Rodriguez",
@@ -29,25 +29,25 @@ export const members =[
     //   gstin: "GSTIN336769",
     //   email: "shaileshgehlot1224@gmail.com"
     // },
-    {
-      id: 4,
-      name: "Shweta Mehta",
-      companyName: "XYZ Ltd",
-      totalOrders: 5,
-      totalSaving: 810,
-      membershipExpiry: "31st March 2025",
-      gstin: "GSTIN683751",
-      email: "info@aclindia.co"
-    },
+    // {
+    //   id: 4,
+    //   name: "Shweta Mehta",
+    //   companyName: "XYZ Ltd",
+    //   totalOrders: 5,
+    //   totalSaving: 810,
+    //   membershipExpiry: "31st March 2025",
+    //   gstin: "GSTIN683751",
+    //   email: "info@aclindia.co"
+    // },
     // {
     //   id: 5,
-    //   name: "Jordan Clark",
+    //   name: "Sumit",
     //   companyName: "Global Inc",
     //   totalOrders: 44,
     //   totalSaving: 3696,
     //   membershipExpiry: "2025-11-29",
     //   gstin: "GSTIN594162",
-    //   email: "office9@aclindia.co"
+    //   email: "office5@aclindia.co"
     // },
     // {
     //   id: 6,

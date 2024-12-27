@@ -2,46 +2,40 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { useState, useEffect, Suspense } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, Suspense, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import confetti from "canvas-confetti";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Label } from "@/components/ui/label";
 import {
-  Diamond,
-  Star,
-  Crown,
-  Gift,
-  Shield,
-  Zap,
-  ShoppingCart,
-  TrendingUp,
-  Loader2,
-  Newspaper,
-  BadgeIndianRupee,
-  IndianRupee,
-  ShieldCheck,
-  Blocks,
-} from "lucide-react";
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { ShoppingCart, Loader2, Check, Coins, ShieldCheck, BadgeIndianRupee, Blocks, Newspaper, IndianRupee } from "lucide-react";
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 import Image from "next/image";
-import { Separator } from "@/components/ui/separator";
 import { members } from "@/data";
-import { useRouter } from "next/navigation";
+import dynamic from "next/dynamic";
+import { Separator } from "@/components/ui/separator";
+import { motion } from "framer-motion";
+import { checkExistingRenewal } from "@/action/checkExistingRenewal";
 
-const renewalOptions = [
-  { period: "Monthly", price: 5000 },
-  { period: "Yearly", price: 30000 },
-  { period: "5 Years", price: 122000 },
+const Confetti = dynamic(() => import("react-confetti"), { ssr: false });
+
+const plans = [
+  { name: "5 Years", price: 220000, duration: "5 years", months: 60 },
+  { name: "Yearly", price: 30000, duration: "year", months: 12 },
+  { name: "Monthly", price: 5000, duration: "month", months: 1 },
 ];
 
 const benefits = [
@@ -66,20 +60,108 @@ const benefits = [
 
 function ClientContent() {
   const searchParams = useSearchParams();
-  const [member, setMember] = useState<any>(null);
-  const [selectedRenewal, setSelectedRenewal] = useState<string>("Monthly");
-  const [showConfetti, setShowConfetti] = useState(false);
-  const [showPrices, setShowPrices] = useState(false);
+  const memberId = searchParams.get("id");
+  const member = members.find((m) => m.id === Number(memberId));
+
+  const [selectedPlan, setSelectedPlan] = useState<(typeof plans)[0] | null>(
+    null
+  );
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [showThankYou, setShowThankYou] = useState(false);
+  const [newExpiryDate, setNewExpiryDate] = useState<string | null>(null);
+
+  const handleRenew = (plan: (typeof plans)[0]) => {
+    setSelectedPlan(plan);
+    setIsDialogOpen(true);
+  };
+
 
   useEffect(() => {
-    const memberId = searchParams.get("member");
-    if (memberId) {
-      const foundMember = members.find((m) => m.gstin === memberId);
-      setMember(foundMember || null);
+    if (member) {
+        checkExistingRenewal(member.gstin)
+            .then((response) => {
+                if (response.data) {
+                    console.log(response.data);
+                    
+                    setSelectedPlan(plans.find(p => p.price === response.data?.price) || null);
+                    setNewExpiryDate(calculateNewExpiryDate(
+                        member.membershipExpiry,
+                        plans.find(p => p.price === response.data?.price)?.months || 0
+                    ));
+                    setShowThankYou(true);
+                    setShowConfetti(true);
+                    confetti({
+                        particleCount: 150,
+                        spread: 70,
+                        origin: { y: 0.6 },
+                        colors: ["#FFD700", "#000000", "#FFFFFF", "#B8860B"],
+                    });
+                    setTimeout(() => {
+                        setShowConfetti(false);
+                    }, 5000);
+                } else if (response.error) {
+                    console.error('Error:', response.error);
+                }
+            })
+            .catch((error) => {
+                console.error('Failed to check renewal:', error);
+            });
     }
-  }, [searchParams]);
+}, [member]);
+
+  const calculateNewExpiryDate = (currentExpiry: string, monthsToAdd: number) => {
+    // Parse the date string (e.g., "31st March 2025")
+    const dateRegex = /(\d+)(?:st|nd|rd|th)\s+(\w+)\s+(\d{4})/;
+    const matches = currentExpiry.match(dateRegex);
+    
+    if (!matches) {
+      throw new Error("Invalid date format");
+    }
+  
+    const [_, day, monthStr, year] = matches;
+    
+    // Convert month name to month number (0-11)
+    const months = {
+      January: 0, February: 1, March: 2, April: 3, May: 4, June: 5,
+      July: 6, August: 7, September: 8, October: 9, November: 10, December: 11
+    };
+    
+    // Create date object
+    const date = new Date(
+      parseInt(year),
+      months[monthStr as keyof typeof months],
+      parseInt(day)
+    );
+    
+    // Add months
+    date.setMonth(date.getMonth() + monthsToAdd);
+    
+    // Handle month/year rollover
+    if (date.getDate() !== parseInt(day)) {
+      // If the day doesn't match, we've hit the end of the month
+      // Go back to the last day of the previous month
+      date.setDate(0);
+    }
+    
+    // Format the date with ordinal suffix
+    const getOrdinalSuffix = (d: number) => {
+      if (d > 3 && d < 21) return 'th';
+      switch (d % 10) {
+        case 1: return 'st';
+        case 2: return 'nd';
+        case 3: return 'rd';
+        default: return 'th';
+      }
+    };
+    
+    const formattedDay = `${date.getDate()}${getOrdinalSuffix(date.getDate())}`;
+    const formattedMonth = date.toLocaleString('default', { month: 'long' });
+    const formattedYear = date.getFullYear();
+    
+    return `${formattedDay} ${formattedMonth} ${formattedYear}`;
+  };
 
   if (!member) {
     return (
@@ -89,12 +171,14 @@ function ClientContent() {
     );
   }
 
-  const handleRenew = async () => {
+  const confirmRenewal = async () => {
+    if (!selectedPlan || !member) return;
+    const newExpiry = calculateNewExpiryDate(
+      member.membershipExpiry,
+      selectedPlan.months
+    );
     setIsLoading(true);
     try {
-      const selectedOption = renewalOptions.find(
-        (option) => option.period === selectedRenewal
-      );
       const response = await fetch("/api/send-email", {
         method: "POST",
         headers: {
@@ -104,20 +188,21 @@ function ClientContent() {
           email: member.email,
           memberName: member.name,
           gstin: member.gstin,
-          plan: selectedRenewal,
-          price: selectedOption?.price,
+          plan: selectedPlan.name,
+          price: selectedPlan?.price,
         }),
       });
 
       if (response.ok) {
+        setNewExpiryDate(newExpiry);
         setShowConfetti(true);
+        setShowThankYou(true);
         confetti({
           particleCount: 150,
           spread: 70,
           origin: { y: 0.6 },
           colors: ["#FFD700", "#000000", "#FFFFFF", "#B8860B"],
         });
-        router.push("/thank-you");
         setTimeout(() => {
           setShowConfetti(false);
         }, 5000);
@@ -129,175 +214,102 @@ function ClientContent() {
     } finally {
       setIsLoading(false);
     }
+    setIsLoading(false);
+    setIsDialogOpen(false);
   };
 
   return (
-    <div className="min-h-screen bg-transparent text-white relative overflow-hidden">
-      <div className="absolute inset-0 bg-[url('/bg1.jpg')] bg-cover blur-xl"></div>
-      <div className="absolute inset-0 bg-[url('/bg2.jpg')] bg-cover mix-blend-multiply"></div>
-      <Card className="w-full border-0 mx-auto bg-[url('/bg3.jpg')] rounded-none bg-cover backdrop-blur-sm relative z-10 overflow-hidden">
-        <CardHeader className="relative z-10">
-          <div className="flex justify-center items-center mb-3">
-            <Image
-              src="/logo.png"
-              alt="Ambica Corporation Limited"
-              width={500}
-              height={300}
-              className="h-8 w-32 md:h-16 md:w-40"
-            />
-          </div>
-          <CardTitle className="text-2xl md:text-3xl font-bold text-black bg-clip-text bg-gradient-to-r from-golden via-yellow-500 to-golden animate-shimmer flex items-center justify-center space-x-4 py-4 px-2">
-            <Crown className="h-6 w-6 md:h-10 md:w-10 text-black" />
-            <span>VIP Membership</span>
-          </CardTitle>
-          <CardTitle className="text-2xl md:text-5xl font-bold text-golden">
-            Welcome {member.name}
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-8 relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <p className="text-lg font-medium text-golden">
-                Membership GSTIN:
-              </p>
-              <p className="text-xl font-bold">{member.gstin}</p>
-            </div>
-            <div>
-              <p className="text-lg font-medium text-golden">
-                Membership Status:
-              </p>
-              <p className="text-xl font-bold">Active</p>
-            </div>
-          </div>
-          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <motion.div
-              className="bg-gradient-to-br from-golden/20 to-golden/5 p-4 rounded-lg border border-golden"
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
-              <div className="flex items-center justify-between mb-2">
-                <TrendingUp className="text-golden h-8 w-8" />
-                <span className="text-sm text-golden/80">Total Saving</span>
-              </div>
-              <motion.div
-                className="text-3xl sm:text-4xl font-bold text-golden"
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.5 }}
-              >
-                ₹{member.totalSaving.toLocaleString()}
-              </motion.div>
-            </motion.div>
-            <motion.div
-              className="bg-gradient-to-br from-golden/20 to-golden/5 p-4 rounded-lg border border-golden"
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-            >
-              <div className="flex items-center justify-between mb-2">
-                <ShoppingCart className="text-golden h-8 w-8" />
-                <span className="text-sm text-golden/80">Total Order</span>
-              </div>
-              <motion.div
-                className="text-3xl sm:text-4xl font-bold text-golden"
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.6 }}
-              >
-                {member.totalOrders}
-              </motion.div>
-            </motion.div>
-          </div>
-          <div className="text-center text-xl text-[#be2200] font-bold">
-            <p>Your Membership Expires on 31st March 2025</p>
-          </div>
-
-          <motion.div
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-            className="bg-transparent p-6 rounded-lg "
-          >
-            <h3 className="text-xl md:text-2xl font-semibold text-golden mb-4 text-center">
-              Membership Renewal
-            </h3>
-            {showPrices ? (
-              <>
-                <RadioGroup
-                  onValueChange={setSelectedRenewal}
-                  defaultValue={selectedRenewal}
-                  className="space-y-4"
+    <div className="min-h-screen  bg-[url('/4016.png')] bg-cover text-white">
+      <header className="from-yellow-600 to-yellow-500 p-6 shadow-lg text-2xl md:text-3xl font-bold text-black bg-clip-text bg-gradient-to-r from-golden via-yellow-500 to-golden animate-shimmer space-x-4 py-4 px-2">
+        <div className="flex justify-center items-center mb-3">
+          <Image
+            src="/logo.png"
+            alt="Ambica Corporation Limited"
+            width={500}
+            height={300}
+            className="h-8 w-32 md:h-16 md:w-48"
+          />
+        </div>
+        <h1 className="text-3xl font-bold text-center">Membership Renewal</h1>
+      </header>
+      <main className="container mx-auto px-4 py-8">
+        <p className="text-2xl mb-5">
+          Welcome{" "}
+          <span className="text-yellow-500 font-bold">{member.name}</span>
+        </p>
+        <p>Choose required plan.</p>
+        <div className="grid gap-8 md:grid-cols-3 mb-8">
+          {plans.map((plan) => (
+            <Card key={plan.name} className="bg-transparent border-yellow-500">
+              <CardHeader>
+                <CardTitle className="text-2xl text-yellow-500">
+                  {plan.name}
+                </CardTitle>
+                <CardDescription className="text-gray-400">
+                  Renew for {plan.duration}
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="text-3xl font-bold text-yellow-500">
+                  ₹{plan.price.toLocaleString()}
+                </p>
+              </CardContent>
+              <CardFooter>
+                <Button
+                  className="w-full bg-yellow-500 hover:bg-yellow-600 text-black"
+                  onClick={() => handleRenew(plan)}
                 >
-                  {renewalOptions.map((option) => (
-                    <div
-                      key={option.period}
-                      className="flex items-center justify-center"
-                    >
-                      <div className="flex items-center space-x-1 bg-transparent justify-center rounded-md">
-                        <RadioGroupItem
-                          value={option.period}
-                          id={option.period}
-                          className="text-golden border-golden"
-                        />
-                        <Label
-                          htmlFor={option.period}
-                          className="text-white text-sm md:text-lg"
-                        >
-                          {option.period} - ₹{option.price.toLocaleString()}
-                        </Label>
-                      </div>
-                    </div>
-                  ))}
-                </RadioGroup>
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <Button className="w-full mt-4 bg-gradient-to-r from-golden via-yellow-500 to-golden text-black text-lg font-bold py-6 hover:from-golden hover:via-yellow-400 hover:to-golden transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-golden/50">
-                      Continue
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent className="bg-black border-golden rounded-lg">
-                    <DialogHeader>
-                      <DialogTitle className="text-golden text-2xl">
-                        Confirm VIP Membership Renewal
-                      </DialogTitle>
-                    </DialogHeader>
-                    <p className="text-white text-lg">
-                      Are you sure you want to renew your VIP membership for{" "}
-                      {selectedRenewal}?
-                    </p>
-                    <Button
-                      onClick={handleRenew}
-                      disabled={isLoading}
-                      className="w-full mt-4 bg-gradient-to-r from-golden via-yellow-500 to-golden text-black text-lg font-bold py-6 hover:from-golden hover:via-yellow-400 hover:to-golden"
-                    >
-                      {isLoading ? (
-                        <>
-                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                          Processing...
-                        </>
-                      ) : (
-                        "Confirm Renewal"
-                      )}
-                    </Button>
-                  </DialogContent>
-                </Dialog>
-              </>
-            ) : (
-              <Button
-                onClick={() => setShowPrices(true)}
-                className="w-full mt-4 bg-gradient-to-r from-golden via-yellow-500 to-golden text-black text-lg font-bold py-6 hover:from-golden hover:via-yellow-400 hover:to-golden transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-golden/50"
-              >
-                Renew VIP Membership
-              </Button>
-            )}
-          </motion.div>
-
-          <motion.div
+                  Renew Now
+                </Button>
+              </CardFooter>
+            </Card>
+          ))}
+        </div>
+        <Card className="bg-transparent border-0 mb-8">
+          <CardHeader>
+            <CardTitle className="text-2xl text-yellow-500">
+              Member Information
+            </CardTitle>
+            <CardDescription>
+              Your ACL VIP Membership Saved you As of 30th December 2024
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid gap-4 sm:grid-cols-2 mb-8">
+              <Card className="bg-transparent border-yellow-500">
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <CardTitle className="text-lg font-medium text-yellow-500">
+                    Total Orders
+                  </CardTitle>
+                  <ShoppingCart className="h-6 w-6 text-yellow-500" />
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold">{member.totalOrders}</div>
+                  <p className="text-xs text-gray-400">Lifetime orders</p>
+                </CardContent>
+              </Card>
+              <Card className="bg-transparent border-yellow-500">
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                  <CardTitle className="text-lg font-medium text-yellow-500">
+                    Total Savings
+                  </CardTitle>
+                  <Coins className="h-6 w-6 text-yellow-500" />
+                </CardHeader>
+                <CardContent>
+                  <div className="text-2xl font-bold">
+                    ₹{member.totalSaving.toLocaleString()}
+                  </div>
+                  <p className="text-xs text-gray-400">Amount saved</p>
+                </CardContent>
+              </Card>
+            </div>
+          </CardContent>
+        </Card>
+        <motion.div
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="bg-black/40 p-6 rounded-lg border border-golden/30"
+            className=" p-6 rounded-lg border border-golden/30"
           >
             <h3 className="text-2xl font-semibold text-golden mb-4">
               Exclusive VIP Benefits
@@ -317,8 +329,7 @@ function ClientContent() {
               ))}
             </div>
           </motion.div>
-
-          <div className="w-full rounded-md flex items-center justify-center">
+        <div className="w-full rounded-md flex items-center justify-center">
             <iframe
               src="https://www.youtube.com/embed/p-PzYHNKaQI?si=diDEZJrjEZeUDTQi"
               title="ACL VIP Priority Membership"
@@ -328,37 +339,82 @@ function ClientContent() {
               referrerPolicy="strict-origin-when-cross-origin"
             />
           </div>
-
-          <Separator className="bg-yellow-500" />
+      <Separator className="bg-yellow-500" />
 
           <div className="text-yellow-500 text-center">
             <p>Priority Desk</p>
             <p>+91 999-999-9999</p>
           </div>
-        </CardContent>
-      </Card>
-      <AnimatePresence>
-        {showConfetti && (
-          <motion.div
-            className="fixed inset-0 pointer-events-none z-50"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <div className="absolute inset-0 flex items-center justify-center">
-              <motion.div
-                className="text-3xl font-bold text-black bg-clip-text bg-gradient-to-r from-golden via-yellow-500 to-golden animate-shimmer py-3 px-3"
-                initial={{ scale: 0.5, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 1.5, opacity: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                VIP Membership Renewed!
-              </motion.div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      </main>
+
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogContent className="bg-gray-900 text-white border-yellow-500">
+          <DialogHeader>
+            <DialogTitle className="text-yellow-500">
+              Confirm Renewal
+            </DialogTitle>
+            <DialogDescription className="text-gray-400">
+              You are renewing your membership for the {selectedPlan?.name}{" "}
+              plan.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter className="flex gap-5 md:gap-2">
+            <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
+              Cancel
+            </Button>
+            <Button
+              onClick={confirmRenewal}
+              disabled={isLoading}
+              className="bg-yellow-500 hover:bg-yellow-600 text-black"
+            >
+              {isLoading ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Please wait
+                </>
+              ) : (
+                "Confirm"
+              )}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {showThankYou && (
+        <>
+          {showConfetti && <Confetti className="fixed inset-0 z-50" />}
+          <div className="fixed inset-0 bg-black bg-opacity-50 z-50" />
+          <Dialog open={showThankYou} onOpenChange={() => {}}>
+            <DialogContent
+              className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-900 text-white border-yellow-500 z-50"
+              onPointerDownOutside={(e) => e.preventDefault()}
+            >
+              <DialogHeader>
+                <DialogTitle className="text-3xl font-bold text-yellow-500">
+                  Thank You!
+                </DialogTitle>
+                <DialogDescription className="text-xl text-gray-200">
+                  Your membership has been successfully renewed.
+                </DialogDescription>
+              </DialogHeader>
+              <div className="text-center text-gray-300 space-y-2">
+                <p>Renewed successfully for {selectedPlan?.name} plan.</p>
+                <p>
+                  Valid until:{" "}
+                  <span className="font-bold text-yellow-500">
+                    {newExpiryDate}
+                  </span>
+                </p>
+                <p>
+                  A payment invoice will be sent to your email:{" "}
+                  <span className="font-bold">{member.email}</span>
+                </p>
+              </div>
+            </DialogContent>
+          </Dialog>
+          {showConfetti && <Confetti className="fixed inset-0 z-50" />}
+        </>
+      )}
     </div>
   );
 }
@@ -373,6 +429,12 @@ export default function Home() {
       }
     >
       <ClientContent />
+      
+      <div className="bg-yellow-500 py-5">
+        <p className="text-center text-black">
+        © 2024 Ambica Corporation Limited. All Rights Reserved.
+        </p>
+      </div>
     </Suspense>
   );
 }
