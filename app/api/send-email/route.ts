@@ -30,9 +30,9 @@ export async function POST(req: NextRequest) {
       to: email,
       from: {
         email: "office9@aclindia.co",
-        name: "Ambica Corporation Limited", // This is the custom name that will appear
+        name: "Ambica Corporation Limited",
       },
-      templateId: "d-58d4754ac066420d89425468d6e333c2",
+      templateId: "d-ece1596f7ce240c4b0f431915b312e9d",
     };
 
     console.log("Message payload:", msg1);

@@ -60,8 +60,8 @@ const benefits = [
 
 function ClientContent() {
   const searchParams = useSearchParams();
-  const memberId = searchParams.get("id");
-  const member = members.find((m) => m.id === Number(memberId));
+  const memberId = searchParams.get("member");
+  const member = members.find((m) => m.id ===(memberId));
 
   const [selectedPlan, setSelectedPlan] = useState<(typeof plans)[0] | null>(
     null

@@ -5,24 +5,34 @@ import { members } from '@/data'
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY as string)
 
+type Member={
+  id : string;
+  name: string,
+  gstin: string,
+  companyName: string,
+  totalOrders: number,
+  totalSaving: number,
+  membershipExpiry: string,
+  email : string
+}
+
 export async function POST() {
   try {
-    const messages = members.map((member: any) => ({
+    const messages = members.map((member: Member) => ({
       to: member.email,
       from: {
         email: 'office9@aclindia.co',
-        name: 'Ambica Corporation Limited'  // This is the custom name that will appear
+        name: 'Ambica Corporation Limited'
       },
-      subject: `Important Update for ${member.name}`,
-      templateId: 'd-cd5c8778e0064cbd9c415c058df61351',
+      templateId: 'd-58d4754ac066420d89425468d6e333c2',
       dynamicTemplateData: {
+        id : member.id,
         name: member.name,
         gstin: member.gstin,
         companyName: member.companyName,
         totalOrders: member.totalOrders,
         totalSaving: member.totalSaving.toFixed(2),
         membershipExpiry: member.membershipExpiry,
-        subject: `Important Update for ${member.name}`
       }
     }))
 
