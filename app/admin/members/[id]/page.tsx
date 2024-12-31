@@ -5,7 +5,7 @@ export default async function MemberDetails({ params }: { params: Promise<{ id: 
 
   const id = (await params).id;
 
-  const member = members.find(m => m.id === parseInt(id))
+  const member = members.find(m => m.id === (id))
 
   if (!member) {
     notFound()
