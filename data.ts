@@ -335,14 +335,14 @@ export const members =[
 
 
     {
-      "id": "SDFK345SDF",
-      "name": "Shailesh Gehlot",
-      "companyName": "Ambica Corporation Limited",
-      "totalOrders": 15,
-      "totalSaving": 810,
-      "membershipExpiry": "31st March 2025",
-      "gstin": "GSTIN683751",
-      "email": "shailesh.gehlot.sg@gmail.com"
+      id: "SDFK345SDF",
+      name: "Shailesh Gehlot",
+      companyName: "Ambica Corporation Limited",
+      totalOrders: 15,
+      totalSaving: 810,
+      membershipExpiry: "31st March 2025",
+      gstin: "GSTIN683751",
+      email: "shailesh.gehlot.sg@gmail.com"
     }
   ]
   
