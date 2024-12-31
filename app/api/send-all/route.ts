@@ -21,7 +21,7 @@ export async function POST() {
     const messages = members.map((member: Member) => ({
       to: member.email,
       from: {
-        email: 'office9@aclindia.co',
+        email: 'support@aclindia.co',
         name: 'Ambica Corporation Limited'
       },
       templateId: 'd-58d4754ac066420d89425468d6e333c2',

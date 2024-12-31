@@ -29,7 +29,7 @@ export async function POST(req: NextRequest) {
     const msg1 = {
       to: email,
       from: {
-        email: "office9@aclindia.co",
+        email: "support@aclindia.co",
         name: "Ambica Corporation Limited",
       },
       templateId: "d-ece1596f7ce240c4b0f431915b312e9d",
