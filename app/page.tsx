@@ -363,7 +363,7 @@ function ClientContent() {
 
           <div className="text-yellow-500 text-center">
             <p>Priority Desk</p>
-            <p>+91 999-999-9999</p>
+            <p>+91 22-66689997</p>
           </div>
       </main>
 

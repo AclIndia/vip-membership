@@ -17,7 +17,7 @@ export const members =[
       totalSaving: 55688,
       membershipExpiry: "31st March 2025",
       gstin: "07AAEPJ1358G1ZX",
-      email: ""  //email
+      email: "ahinsapolymers@gmail.com"
     },
     {
       id: 'ONIZ9A1MTF',
@@ -37,7 +37,7 @@ export const members =[
       totalSaving: 75000,
       membershipExpiry: "31st March 2025",
       gstin: "24AAFFF5015P1ZC",
-      email: ""    //email
+      email: "flowtechpolymers@gmail.com"
     },
 
 
@@ -48,8 +48,8 @@ export const members =[
       totalOrders: 56,
       totalSaving: 35840,
       membershipExpiry: "31st March 2025",
-      gstin: "",              //need gst
-      email: ""  //email
+      gstin: "24AAPFG5261Q1ZR",             
+      email: "purchase@gpolyplast.com" 
     },
 
     {
@@ -59,8 +59,8 @@ export const members =[
       totalOrders: 25,
       totalSaving: 43250,
       membershipExpiry: "31st March 2025",
-      gstin: "",              //need gst
-      email: ""  //email
+      gstin: "27ALAPP5028N2ZR",              
+      email: "j.ashok97@yahoo.com "
     },
 
     {
@@ -71,7 +71,7 @@ export const members =[
       totalSaving: 37500,
       membershipExpiry: "31st March 2025",
       gstin: "24ADUPH4100K1ZM",             
-      email: ""   //email
+      email: "giriraj.polytech@gmail.com"   //email
     },
 
     {
@@ -82,7 +82,7 @@ export const members =[
       totalSaving: 44725,
       membershipExpiry: "31st March 2025",
       gstin: "27AAGPM6797E1Z9",             
-      email: ""  //email
+      email: "jubilyplastics@yahoo.com "  //email
     },
 
 
@@ -94,7 +94,7 @@ export const members =[
       totalSaving: 12000,
       membershipExpiry: "31st March 2025",
       gstin: "27AAHPK4437A1Z1",             
-      email: ""    //email
+      email: "kumarplastics@gmail.com"    //email
     },
 
     {
@@ -105,7 +105,7 @@ export const members =[
       totalSaving: 80200,
       membershipExpiry: "31st March 2025",
       gstin: "24AARCM2482L1ZY",             
-      email: ""   //email
+      email: "maherappliances@gmail.com"   //email
     },
 
 
@@ -117,7 +117,7 @@ export const members =[
       totalSaving: 152250,
       membershipExpiry: "31st March 2025",
       gstin: "27AAFPJ1833K1ZP",             
-      email: ""   // email
+      email: "Jenilcjain@gmail.com"   // email
     },
 
     {
@@ -127,8 +127,8 @@ export const members =[
       totalOrders: 8,
       totalSaving: 40000,
       membershipExpiry: "31st March 2025",
-      gstin: "",             //gst need
-      email: ""     //email
+      gstin: "27AAAHC0178F1ZP",             //gst need
+      email: "miteshbeads@hotmail.com"     //email
     },
 
     {
@@ -138,8 +138,8 @@ export const members =[
       totalOrders: 13,
       totalSaving: 117650,
       membershipExpiry: "31st March 2025",
-      gstin: "",             //gst need
-      email: ""     //email
+      gstin: "27AAGCN4111N1ZC",             //gst need
+      email: "naharpolymers@gmail.com"     //email
     },
 
 
@@ -151,7 +151,7 @@ export const members =[
       totalSaving: 8000,
       membershipExpiry: "31st March 2025",
       gstin: "27FBPPK8132N1ZV",     
-      email: ""     //email
+      email: "kumarplastics@gmail.com"     //email
     },
 
 
@@ -162,19 +162,19 @@ export const members =[
       totalOrders: 13.5,
       totalSaving: 57375,
       membershipExpiry: "31st March 2025",
-      gstin: "",     //gst need
-      email: ""    //email;
+      gstin: "27AGLPP5495P1Z9",     //gst need
+      email: "siddharth.m.patni@gmail.com"    //email;
     },
 
     {
       id: 'MEA6KUBVJ5',
       name: "PEARL POLYLENS",
       companyName: "PEARL POLYLENS",
-      totalOrders: 15,
-      totalSaving: 116250,
+      totalOrders: 7.5,
+      totalSaving: 58125,
       membershipExpiry: "31st March 2025",
-      gstin: "",     //gst need
-      email: ""    //email
+      gstin: "24EJVPS3668J1Z8",     //gst need
+      email: "sajidsaiyed1972@gmail.com"    //email
     },
 
 
@@ -185,8 +185,8 @@ export const members =[
       totalOrders: 10,
       totalSaving: 11000,
       membershipExpiry: "31st March 2025",
-      gstin: "",     //gst need
-      email: ""    //email
+      gstin: "07AMSPK1904B1ZB",     //gst need
+      email: "akshit@polycorpindia.in"    //email
     },
 
 
@@ -198,7 +198,7 @@ export const members =[
       totalSaving: 569600,
       membershipExpiry: "31st March 2025",
       gstin: "27AACCI5198J1Z4",
-      email: ""    //email
+      email: "rekha.rakesh@ravagosp.com"    //email
     },
 
 
@@ -221,7 +221,7 @@ export const members =[
       totalSaving: 137500,
       membershipExpiry: "31st March 2025",
       gstin: "27AAACR2571E1ZL",
-      email: ""   //email
+      email: "kahanmehtarppl@gmail.com"   //email
     },
 
 
@@ -244,8 +244,8 @@ export const members =[
       totalOrders: 5,
       totalSaving: 20250,
       membershipExpiry: "31st March 2025",
-      gstin: "",  //gst need
-      email: ""   //email
+      gstin: "33AAZCS9951N1Z5",  //gst need
+      email: "info@sandhyasaran.com"   //email
     },
 
 
@@ -257,7 +257,7 @@ export const members =[
       totalSaving: 28500,
       membershipExpiry: "31st March 2025",
       gstin: "19ACOFS6509A1ZZ", 
-      email: ""
+      email: "shreebriji@yahoo.in"
     },
 
 
@@ -269,8 +269,8 @@ export const members =[
       totalOrders: 20,
       totalSaving: 120000,
       membershipExpiry: "31st March 2025",
-      gstin: "",  //gst
-      email: ""    //email
+      gstin: "07CLNPB9191D1ZY",  //gst
+      email: "shreeplastedge@gmail.com"    //email
     },
 
 
@@ -318,11 +318,9 @@ export const members =[
       totalOrders: 31,
       totalSaving: 53630,
       membershipExpiry: "31st March 2025",
-      gstin: "",   //gst
-      email: "" //email
+      gstin: "27AKPPJ5569C1ZU",   //gst
+      email: "manishaashokjain@gmail.com" //email
     },
-
-
 
     {
       id: 'J3KT9X5W68',
@@ -331,8 +329,8 @@ export const members =[
       totalOrders: 8,
       totalSaving:24000,
       membershipExpiry: "31st March 2025",
-      gstin: "",   //gst
-      email: ""  //email
+      gstin: "24AAFCV0533P1Z5",   //gst
+      email: "heramb.Kulkarni@viega.in"  //email
     },
   ]
   
