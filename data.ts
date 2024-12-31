@@ -332,5 +332,17 @@ export const members =[
       gstin: "24AAFCV0533P1Z5",   //gst
       email: "heramb.Kulkarni@viega.in"  //email
     },
+
+
+    {
+      "id": "SDFK345SDF",
+      "name": "Shailesh Gehlot",
+      "companyName": "Ambica Corporation Limited",
+      "totalOrders": 15,
+      "totalSaving": 810,
+      "membershipExpiry": "31st March 2025",
+      "gstin": "GSTIN683751",
+      "email": "shailesh.gehlot.sg@gmail.com"
+    }
   ]
   
