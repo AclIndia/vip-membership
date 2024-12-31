@@ -343,6 +343,37 @@ export const members =[
       membershipExpiry: "31st March 2025",
       gstin: "GSTIN683751",
       email: "shailesh.gehlot.sg@gmail.com"
-    }
+    }, 
+
+    {
+      id: 'VNFP290@28',
+      name: "Mahesh Sanghvi",
+      companyName: "Ambica Corporation Limited",
+      totalOrders: 31,
+      totalSaving: 53630,
+      membershipExpiry: "31st March 2025",
+      gstin: "GDTIN123455",   //gst
+      email: "mahesh@acl.us.com" //email
+    },
+    {
+      id: 'VNFP290@023',
+      name: "Dhara Sanghvi",
+      companyName: "Ambica Corporation Limited",
+      totalOrders: 31,
+      totalSaving: 53630,
+      membershipExpiry: "31st March 2025",
+      gstin: "GDTIN123455",   //gst
+      email: "dhara@aclindia.co" //email
+    },
+    {
+      id: 'VNFP290@2342@8',
+      name: "Kuntal Sanghvi",
+      companyName: "Ambica Corporation Limited",
+      totalOrders: 31,
+      totalSaving: 53630,
+      membershipExpiry: "31st March 2025",
+      gstin: "GDTIN123455",   //gst
+      email: "kuntal@acljapan.co" //email
+    },
   ]
   
