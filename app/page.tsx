@@ -253,6 +253,9 @@ function ClientContent() {
                 <p className="text-3xl font-bold text-yellow-500">
                   ₹{plan.price.toLocaleString()}
                 </p>
+                <p className="text-sm font-normal text-gray-400">
+                (The above amount is inclusive of GST)
+                </p>
               </CardContent>
               <CardFooter>
                 <Button
