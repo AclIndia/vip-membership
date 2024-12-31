@@ -33,9 +33,9 @@ import { checkExistingRenewal } from "@/action/checkExistingRenewal";
 const Confetti = dynamic(() => import("react-confetti"), { ssr: false });
 
 const plans = [
-  { name: "5 Years", price: 220000, duration: "5 years", months: 60 },
-  { name: "Yearly", price: 30000, duration: "year", months: 12 },
-  { name: "Monthly", price: 5000, duration: "month", months: 1 },
+  { name: "5 Years", price: 120000, duration: "5 years", months: 60 },
+  { name: "Yearly", price: 30000, duration: "year (12 months)", months: 12 },
+  { name: "Monthly", price: 5000, duration: "1 month", months: 1 },
 ];
 
 const benefits = [
