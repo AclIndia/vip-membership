@@ -33,7 +33,7 @@ import { checkExistingRenewal } from "@/action/checkExistingRenewal";
 const Confetti = dynamic(() => import("react-confetti"), { ssr: false });
 
 const plans = [
-  { name: "5 Years", price: 120000, duration: "5 years", months: 60 },
+  { name: "5 Years", price: 122000, duration: "5 years", months: 60 },
   { name: "Yearly", price: 30000, duration: "year (12 months)", months: 12 },
   { name: "Monthly", price: 5000, duration: "1 month", months: 1 },
 ];
@@ -219,7 +219,7 @@ function ClientContent() {
   };
 
   return (
-    <div className="min-h-screen  bg-[url('/4016.png')] bg-cover text-white">
+    <div className="min-h-screen  bg-[url('/4016.png')] bg-cover text-white main_content">
       <header className="from-yellow-600 to-yellow-500 p-6 shadow-lg text-2xl md:text-3xl font-bold text-black bg-clip-text bg-gradient-to-r from-golden via-yellow-500 to-golden animate-shimmer space-x-4 py-4 px-2">
         <div className="flex justify-center items-center mb-3">
           <Image
@@ -237,7 +237,10 @@ function ClientContent() {
           Welcome{" "}
           <span className="text-yellow-500 font-bold">{member.name}</span>
         </p>
-        <p>Choose required plan.</p>
+        <div className="mb-5">
+          <p className="text-yellow-500 font-lg font-medium">!!Renew your membership now!!</p> 
+          <p>
+        All renewed membership will start from <span className="font-bold">1st April 2025</span>, immediately after the current membership period ends.</p></div>
         <div className="grid gap-8 md:grid-cols-3 mb-8">
           {plans.map((plan) => (
             <Card key={plan.name} className="bg-transparent border-yellow-500">
@@ -273,7 +276,7 @@ function ClientContent() {
             <CardTitle className="text-2xl text-yellow-500">
               Member Information
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="text-white">
               Your ACL VIP Membership Saved you As of 30th December 2024
             </CardDescription>
           </CardHeader>
@@ -287,8 +290,8 @@ function ClientContent() {
                   <ShoppingCart className="h-6 w-6 text-yellow-500" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">{member.totalOrders}</div>
-                  <p className="text-xs text-gray-400">Lifetime orders</p>
+                  <div className="text-2xl font-bold text-white">{member.totalOrders}</div>
+               
                 </CardContent>
               </Card>
               <Card className="bg-transparent border-yellow-500">
@@ -299,7 +302,7 @@ function ClientContent() {
                   <Coins className="h-6 w-6 text-yellow-500" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold">
+                  <div className="text-2xl font-bold text-white">
                     ₹{member.totalSaving.toLocaleString()}
                   </div>
                   <p className="text-xs text-gray-400">Amount saved</p>
@@ -312,9 +315,9 @@ function ClientContent() {
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className=" p-6 rounded-lg border border-golden/30"
+            className=" p-6 rounded-lg border border-yellow-500"
           >
-            <h3 className="text-2xl font-semibold text-golden mb-4">
+            <h3 className="text-2xl font-semibold text-yellow-500 mb-4">
               Exclusive VIP Benefits
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 md:gap-6 gap-2">
@@ -326,7 +329,7 @@ function ClientContent() {
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ duration: 0.3, delay: 0.1 * index }}
                 >
-                  <benefit.icon className="md:h-8 md:w-8 w-5 h-5 text-golden" />
+                  <benefit.icon className="md:h-8 md:w-8 w-5 h-5 text-yellow-500" />
                   <span className="md:text-lg text-sm">{benefit.text}</span>
                 </motion.div>
               ))}
@@ -402,10 +405,11 @@ function ClientContent() {
               </DialogHeader>
               <div className="text-center text-gray-300 space-y-2">
                 <p>Renewed successfully for {selectedPlan?.name} plan.</p>
+                <p>Current Membership: Valid Until 31st March 2025</p>
                 <p>
-                  Valid until:{" "}
+                Renewed Membership: Valid From 
                   <span className="font-bold text-yellow-500">
-                    {newExpiryDate}
+                  {" "}1st April 2025 to {" "} {newExpiryDate}
                   </span>
                 </p>
                 <p>

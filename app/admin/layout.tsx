@@ -1,32 +1,35 @@
-/* eslint-disable @next/next/no-html-link-for-pages */
-import { Inter } from 'next/font/google'
-import "../../app/globals.css"
+import { sidebarLinks } from "@/config/dashboard";
+import { Metadata } from "next";
+import { Toaster } from "@/components/ui/toaster";
+import { DashboardSidebar, MobileSheetSidebar } from "@/components/dashboard/dashboard-sidebar";
+import DynamicBreadcrumb from "@/components/dashboard/dynamic-breadcrumb";
 
-const inter = Inter({ subsets: ['latin'] })
+export const metadata: Metadata = {
+  title: "Admin Portal",
+  description: "Price list of all polymers",
+};
 
-export const metadata = {
-  title: 'Email Campaign Admin',
-  description: 'Admin panel for email campaign application',
-}
+const Layout = async ({ children }: { children: React.ReactNode }) => {
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <nav className="bg-gray-800 text-white p-4">
-          <ul className="flex space-x-4">
-            <li><a href="/admin/members" className="hover:text-gray-300">Members</a></li>
-            <li><a href="/admin/mails" className="hover:text-gray-300">Sent Mails</a></li>
-            <li><a href="/admin/renewal-data" className="hover:text-gray-300">Renewal Data</a></li>
-          </ul>
-        </nav>
-        {children}
-      </body>
-    </html>
-  )
-}
+      <div className="relative flex min-h-screen w-screen">
+        <DashboardSidebar links={sidebarLinks} />
+        <div className="flex flex-1 flex-col">
+          <header className="sticky top-0 z-50 flex h-14 bg-background px-4 lg:h-[60px] xl:px-8">
+            <div className="flex w-full items-center gap-x-3 px-0">
+              <MobileSheetSidebar links={sidebarLinks} />
+            </div>
+          </header>
+          <main className="flex-1 p-4 xl:px-8">
+            <div className="flex h-full w-full flex-col gap-4 px-0 lg:gap-6">
+            <DynamicBreadcrumb />
+            <Toaster />
+              {children}
+            </div>
+          </main>
+        </div>
+      </div>
+  );
+};
 
+export default Layout;

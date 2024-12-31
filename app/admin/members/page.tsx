@@ -1,5 +1,7 @@
-import MembersTable from "@/components/admin/MembersTable";
+
+import { MembersTable } from "@/components/admin/MembersTable";
 import SendMailButton from "@/components/admin/SendMailButton";
+import { members } from "@/data";
 
 
 export default function MembersPage() {
@@ -7,7 +9,7 @@ export default function MembersPage() {
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Members</h1>
       <SendMailButton />
-      <MembersTable />
+      <MembersTable data={members} />
     </div>
   )
 }
