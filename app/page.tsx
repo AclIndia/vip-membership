@@ -171,6 +171,20 @@ function ClientContent() {
     );
   }
 
+
+
+  const convertRupee = (amt: number) => {
+    const formatted = new Intl.NumberFormat("en-IN", {
+      style: "currency",
+      currency: "INR",
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(amt);
+  
+    return formatted;
+  };
+  
+
   const confirmRenewal = async () => {
     if (!selectedPlan || !member) return;
     const newExpiry = calculateNewExpiryDate(
@@ -254,7 +268,7 @@ function ClientContent() {
               </CardHeader>
               <CardContent>
                 <p className="text-3xl font-bold text-yellow-500">
-                  ₹{plan.price.toLocaleString()}
+                {convertRupee(plan.price)}
                 </p>
                 <p className="text-sm font-normal text-gray-400">
                 (The above amount is inclusive of GST)
@@ -285,12 +299,12 @@ function ClientContent() {
               <Card className="bg-transparent border-yellow-500">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-lg font-medium text-yellow-500">
-                    Total Orders
+                    Total Order Quantity
                   </CardTitle>
                   <ShoppingCart className="h-6 w-6 text-yellow-500" />
                 </CardHeader>
                 <CardContent>
-                  <div className="text-2xl font-bold text-white">{member.totalOrders}</div>
+                  <div className="text-2xl font-bold text-white">{member.totalOrders} MT</div>
                
                 </CardContent>
               </Card>
@@ -303,7 +317,7 @@ function ClientContent() {
                 </CardHeader>
                 <CardContent>
                   <div className="text-2xl font-bold text-white">
-                    ₹{member.totalSaving.toLocaleString()}
+                  {convertRupee(member.totalSaving)}
                   </div>
                   <p className="text-xs text-gray-400">Amount saved</p>
                 </CardContent>

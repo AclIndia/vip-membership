@@ -7,7 +7,7 @@ export const members =[
       totalSaving: 50750,
       membershipExpiry: "31st March 2025",
       gstin: "24BBXPR7543C1Z8",
-      email: "shailesh.gehlot.sg@gmail.com"
+      email: "husainrangwala32@gmail.com"
     },
     {
       id: "LS1I07FEKY",
@@ -17,7 +17,7 @@ export const members =[
       totalSaving: 55688,
       membershipExpiry: "31st March 2025",
       gstin: "07AAEPJ1358G1ZX",
-      email: "kuntal@acljapan.co"
+      email: ""  //email
     },
     {
       id: 'ONIZ9A1MTF',
@@ -27,7 +27,7 @@ export const members =[
       totalSaving: 321800,
       membershipExpiry: "31st March 2025",
       gstin: "24AARFC9873C1Z4",
-      email: "shaileshgehlot1224@gmail.com"
+      email: "cryslaindustries@gmail.com"
     },
     {
       id: 'GLE103LB5V',
@@ -37,9 +37,8 @@ export const members =[
       totalSaving: 75000,
       membershipExpiry: "31st March 2025",
       gstin: "24AAFFF5015P1ZC",
-      email: "info@aclindia.co"
+      email: ""    //email
     },
-
 
 
     {
@@ -50,7 +49,7 @@ export const members =[
       totalSaving: 35840,
       membershipExpiry: "31st March 2025",
       gstin: "",              //need gst
-      email: "info@aclindia.co"
+      email: ""  //email
     },
 
     {
@@ -61,7 +60,7 @@ export const members =[
       totalSaving: 43250,
       membershipExpiry: "31st March 2025",
       gstin: "",              //need gst
-      email: "info@aclindia.co"
+      email: ""  //email
     },
 
     {
@@ -72,7 +71,7 @@ export const members =[
       totalSaving: 37500,
       membershipExpiry: "31st March 2025",
       gstin: "24ADUPH4100K1ZM",             
-      email: "info@aclindia.co"
+      email: ""   //email
     },
 
     {
@@ -83,7 +82,7 @@ export const members =[
       totalSaving: 44725,
       membershipExpiry: "31st March 2025",
       gstin: "27AAGPM6797E1Z9",             
-      email: "info@aclindia.co"
+      email: ""  //email
     },
 
 
@@ -95,7 +94,7 @@ export const members =[
       totalSaving: 12000,
       membershipExpiry: "31st March 2025",
       gstin: "27AAHPK4437A1Z1",             
-      email: "info@aclindia.co"
+      email: ""    //email
     },
 
     {
@@ -106,7 +105,7 @@ export const members =[
       totalSaving: 80200,
       membershipExpiry: "31st March 2025",
       gstin: "24AARCM2482L1ZY",             
-      email: "info@aclindia.co"
+      email: ""   //email
     },
 
 
@@ -118,7 +117,7 @@ export const members =[
       totalSaving: 152250,
       membershipExpiry: "31st March 2025",
       gstin: "27AAFPJ1833K1ZP",             
-      email: "info@aclindia.co"
+      email: ""   // email
     },
 
     {
@@ -129,7 +128,7 @@ export const members =[
       totalSaving: 40000,
       membershipExpiry: "31st March 2025",
       gstin: "",             //gst need
-      email: "info@aclindia.co"
+      email: ""     //email
     },
 
     {
@@ -140,7 +139,7 @@ export const members =[
       totalSaving: 117650,
       membershipExpiry: "31st March 2025",
       gstin: "",             //gst need
-      email: "info@aclindia.co"
+      email: ""     //email
     },
 
 
@@ -152,7 +151,7 @@ export const members =[
       totalSaving: 8000,
       membershipExpiry: "31st March 2025",
       gstin: "27FBPPK8132N1ZV",     
-      email: "info@aclindia.co"
+      email: ""     //email
     },
 
 
@@ -164,7 +163,7 @@ export const members =[
       totalSaving: 57375,
       membershipExpiry: "31st March 2025",
       gstin: "",     //gst need
-      email: "info@aclindia.co"
+      email: ""    //email;
     },
 
     {
@@ -175,7 +174,7 @@ export const members =[
       totalSaving: 116250,
       membershipExpiry: "31st March 2025",
       gstin: "",     //gst need
-      email: "info@aclindia.co"
+      email: ""    //email
     },
 
 
@@ -187,7 +186,7 @@ export const members =[
       totalSaving: 11000,
       membershipExpiry: "31st March 2025",
       gstin: "",     //gst need
-      email: "info@aclindia.co"
+      email: ""    //email
     },
 
 
@@ -199,7 +198,7 @@ export const members =[
       totalSaving: 569600,
       membershipExpiry: "31st March 2025",
       gstin: "27AACCI5198J1Z4",
-      email: "info@aclindia.co"
+      email: ""    //email
     },
 
 
@@ -211,7 +210,7 @@ export const members =[
       totalSaving: 8500,
       membershipExpiry: "31st March 2025",
       gstin: "24ABAFR8592D1Z4",
-      email: "info@aclindia.co"
+      email: "roltapolymers@gmail.com"
     },
 
     {
@@ -222,7 +221,7 @@ export const members =[
       totalSaving: 137500,
       membershipExpiry: "31st March 2025",
       gstin: "27AAACR2571E1ZL",
-      email: "info@aclindia.co"
+      email: ""   //email
     },
 
 
@@ -234,7 +233,7 @@ export const members =[
       totalSaving: 150000,
       membershipExpiry: "31st March 2025",
       gstin: "24AAACR4924P1Z3",
-      email: "info@aclindia.co"
+      email: "ronak.borana@ronchpolymers.com"
     },
 
 
@@ -246,7 +245,7 @@ export const members =[
       totalSaving: 20250,
       membershipExpiry: "31st March 2025",
       gstin: "",  //gst need
-      email: "info@aclindia.co"
+      email: ""   //email
     },
 
 
@@ -258,7 +257,7 @@ export const members =[
       totalSaving: 28500,
       membershipExpiry: "31st March 2025",
       gstin: "19ACOFS6509A1ZZ", 
-      email: "info@aclindia.co"
+      email: ""
     },
 
 
@@ -271,7 +270,7 @@ export const members =[
       totalSaving: 120000,
       membershipExpiry: "31st March 2025",
       gstin: "",  //gst
-      email: "info@aclindia.co"
+      email: ""    //email
     },
 
 
@@ -283,7 +282,7 @@ export const members =[
       totalSaving: 78000,
       membershipExpiry: "31st March 2025",
       gstin: "24ADXFS6633B1ZU", 
-      email: "info@aclindia.co"
+      email: "shreeindustries01@yahoo.co.in"
     },
 
 
@@ -295,7 +294,7 @@ export const members =[
       totalSaving: 12500,
       membershipExpiry: "31st March 2025",
       gstin: "24ACZFS3344L1ZF", 
-      email: "info@aclindia.co"
+      email: "srm.0825@gmail.com"
     },
 
 
@@ -307,7 +306,7 @@ export const members =[
       totalSaving: 9000,
       membershipExpiry: "31st March 2025",
       gstin: "26AABCV5472F1ZA", 
-      email: "info@aclindia.co"
+      email: "vepl2007@yahoo.co.in"
     },
 
 
@@ -320,7 +319,7 @@ export const members =[
       totalSaving: 53630,
       membershipExpiry: "31st March 2025",
       gstin: "",   //gst
-      email: "info@aclindia.co"
+      email: "" //email
     },
 
 
@@ -333,7 +332,7 @@ export const members =[
       totalSaving:24000,
       membershipExpiry: "31st March 2025",
       gstin: "",   //gst
-      email: "info@aclindia.co"
+      email: ""  //email
     },
   ]
   
