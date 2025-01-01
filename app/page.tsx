@@ -379,7 +379,7 @@ function ClientContent() {
             </DialogDescription>
           </DialogHeader>
           <DialogFooter className="flex gap-5 md:gap-2">
-            <Button variant="outline" onClick={() => setIsDialogOpen(false)}>
+            <Button variant="outline" className="text-black" onClick={() => setIsDialogOpen(false)}>
               Cancel
             </Button>
             <Button
