@@ -352,7 +352,7 @@ export const members =[
       totalOrders: 31,
       totalSaving: 53630,
       membershipExpiry: "31st March 2025",
-      gstin: "GDTIN123455",   //gst
+      gstin: "GDTIN1234758",   //gst
       email: "mahesh@acl.us.com" //email
     },
     {
@@ -372,7 +372,7 @@ export const members =[
       totalOrders: 31,
       totalSaving: 53630,
       membershipExpiry: "31st March 2025",
-      gstin: "GDTIN123455",   //gst
+      gstin: "GDTIN123473",   //gst
       email: "kuntal@acljapan.co" //email
     },
   ]
